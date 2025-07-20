@@ -1,0 +1,9 @@
+{
+  "/encrypt/page": "app/encrypt/page.js",
+  "/compress/page": "app/compress/page.js",
+  "/decompress/page": "app/decompress/page.js",
+  "/decrypt/page": "app/decrypt/page.js",
+  "/cloud/page": "app/cloud/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js"
+}
