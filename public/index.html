@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Security Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tab {
+            padding: 15px 30px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .result pre {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        .file-upload {
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            background: #f8f9fa;
+            border-color: #764ba2;
+        }
+
+        .file-upload.dragover {
+            background: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .progress {
+            width: 100%;
+            height: 20px;
+            background: #e1e5e9;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #c62828;
+        }
+
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #2e7d32;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                margin-bottom: 5px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Data Security Platform</h1>
+            <p>Enterprise-grade encryption, compression, and high-speed data transfer</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('encryption')">🔐 Encryption</button>
+            <button class="tab" onclick="showTab('compression')">📦 Compression</button>
+            <button class="tab" onclick="showTab('transfer')">⚡ Transfer</button>
+            <button class="tab" onclick="showTab('auth')">👤 Auth</button>
+        </div>
+
+        <!-- Encryption Tab -->
+        <div id="encryption" class="content">
+            <div class="section">
+                <h3>Text Encryption</h3>
+                <div class="form-group">
+                    <label for="encryptText">Text to Encrypt:</label>
+                    <textarea id="encryptText" placeholder="Enter text to encrypt..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="encryptAlgorithm">Algorithm:</label>
+                    <select id="encryptAlgorithm">
+                        <option value="AES-256">AES-256 (Symmetric)</option>
+                        <option value="RSA">RSA (Asymmetric)</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="encryptText()">🔐 Encrypt Text</button>
+                <div id="encryptResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>Text Decryption</h3>
+                <div class="form-group">
+                    <label for="decryptText">Encrypted Text:</label>
+                    <textarea id="decryptText" placeholder="Enter encrypted text..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="decryptKey">Key/Private Key:</label>
+                    <textarea id="decryptKey" placeholder="Enter decryption key..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="decryptIV">IV (for AES):</label>
+                    <input type="text" id="decryptIV" placeholder="Enter IV (for AES encryption)">
+                </div>
+                <div class="form-group">
+                    <label for="decryptAlgorithm">Algorithm:</label>
+                    <select id="decryptAlgorithm">
+                        <option value="AES-256">AES-256</option>
+                        <option value="RSA">RSA</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="decryptText()">🔓 Decrypt Text</button>
+                <div id="decryptResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>File Encryption</h3>
+                <div class="file-upload" onclick="document.getElementById('encryptFile').click()">
+                    <p>📁 Click to select file or drag and drop</p>
+                    <input type="file" id="encryptFile" style="display: none;" onchange="handleFileSelect('encrypt')">
+                </div>
+                <button class="btn" onclick="encryptFile()" id="encryptFileBtn" disabled>🔐 Encrypt File</button>
+                <div id="encryptFileResult"></div>
+            </div>
+        </div>
+
+        <!-- Compression Tab -->
+        <div id="compression" class="content" style="display: none;">
+            <div class="section">
+                <h3>Text Compression</h3>
+                <div class="form-group">
+                    <label for="compressText">Text to Compress:</label>
+                    <textarea id="compressText" placeholder="Enter text to compress..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="compressAlgorithm">Algorithm:</label>
+                    <select id="compressAlgorithm">
+                        <option value="gzip">GZIP</option>
+                        <option value="deflate">DEFLATE</option>
+                        <option value="brotli">BROTLI</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="compressText()">📦 Compress Text</button>
+                <div id="compressResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>Text Decompression</h3>
+                <div class="form-group">
+                    <label for="decompressText">Compressed Text:</label>
+                    <textarea id="decompressText" placeholder="Enter compressed text..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="decompressAlgorithm">Algorithm:</label>
+                    <select id="decompressAlgorithm">
+                        <option value="gzip">GZIP</option>
+                        <option value="deflate">DEFLATE</option>
+                        <option value="brotli">BROTLI</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="decompressText()">📦 Decompress Text</button>
+                <div id="decompressResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>File Compression</h3>
+                <div class="file-upload" onclick="document.getElementById('compressFile').click()">
+                    <p>📁 Click to select file or drag and drop</p>
+                    <input type="file" id="compressFile" style="display: none;" onchange="handleFileSelect('compress')">
+                </div>
+                <button class="btn" onclick="compressFile()" id="compressFileBtn" disabled>📦 Compress File</button>
+                <div id="compressFileResult"></div>
+            </div>
+        </div>
+
+        <!-- Transfer Tab -->
+        <div id="transfer" class="content" style="display: none;">
+            <div class="section">
+                <h3>Fast File Upload</h3>
+                <div class="file-upload" onclick="document.getElementById('transferFile').click()">
+                    <p>📁 Click to select file or drag and drop</p>
+                    <input type="file" id="transferFile" style="display: none;" onchange="handleFileSelect('transfer')">
+                </div>
+                <button class="btn" onclick="uploadFile()" id="uploadFileBtn" disabled>⚡ Upload File</button>
+                <div class="progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar" id="uploadProgressBar" style="width: 0%"></div>
+                </div>
+                <div id="uploadResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>Chunked Transfer</h3>
+                <div class="form-group">
+                    <label for="chunkFilename">Filename:</label>
+                    <input type="text" id="chunkFilename" placeholder="Enter filename">
+                </div>
+                <div class="form-group">
+                    <label for="chunkSize">Chunk Size (bytes):</label>
+                    <input type="number" id="chunkSize" value="1048576" placeholder="Chunk size in bytes">
+                </div>
+                <button class="btn" onclick="createTransferSession()">🔄 Create Transfer Session</button>
+                <div id="transferSessionResult"></div>
+            </div>
+        </div>
+
+        <!-- Auth Tab -->
+        <div id="auth" class="content" style="display: none;">
+            <div class="section">
+                <h3>User Registration</h3>
+                <div class="form-group">
+                    <label for="regUsername">Username:</label>
+                    <input type="text" id="regUsername" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email:</label>
+                    <input type="email" id="regEmail" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password:</label>
+                    <input type="password" id="regPassword" placeholder="Enter password">
+                </div>
+                <button class="btn" onclick="registerUser()">👤 Register</button>
+                <div id="registerResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>User Login</h3>
+                <div class="form-group">
+                    <label for="loginUsername">Username/Email:</label>
+                    <input type="text" id="loginUsername" placeholder="Enter username or email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <button class="btn" onclick="loginUser()">🔑 Login</button>
+                <div id="loginResult"></div>
+            </div>
+
+            <div class="section">
+                <h3>User Profile</h3>
+                <button class="btn" onclick="getProfile()" id="profileBtn" disabled>👤 Get Profile</button>
+                <button class="btn" onclick="logoutUser()" id="logoutBtn" disabled>🚪 Logout</button>
+                <div id="profileResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'encryption';
+        let selectedFiles = {};
+        let authToken = localStorage.getItem('authToken');
+
+        function showTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected content and activate tab
+            document.getElementById(tabName).style.display = 'block';
+            event.target.classList.add('active');
+            currentTab = tabName;
+        }
+
+        function handleFileSelect(type) {
+            const fileInput = document.getElementById(type + 'File');
+            const file = fileInput.files[0];
+            if (file) {
+                selectedFiles[type] = file;
+                document.getElementById(type + 'FileBtn').disabled = false;
+                showMessage(`${type}FileResult`, `File selected: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`, 'success');
+            }
+        }
+
+        function showMessage(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+
+        function showResult(elementId, data) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `
+                <div class="result">
+                    <h4>Result:</h4>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                </div>
+            `;
+        }
+
+        // Encryption functions
+        async function encryptText() {
+            const text = document.getElementById('encryptText').value;
+            const algorithm = document.getElementById('encryptAlgorithm').value;
+            
+            if (!text) {
+                showMessage('encryptResult', 'Please enter text to encrypt', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/encryption/encrypt-text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, algorithm })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('encryptResult', result.data);
+                } else {
+                    showMessage('encryptResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('encryptResult', 'Encryption failed: ' + error.message, 'error');
+            }
+        }
+
+        async function decryptText() {
+            const encrypted = document.getElementById('decryptText').value;
+            const key = document.getElementById('decryptKey').value;
+            const iv = document.getElementById('decryptIV').value;
+            const algorithm = document.getElementById('decryptAlgorithm').value;
+            
+            if (!encrypted || !key) {
+                showMessage('decryptResult', 'Please enter encrypted text and key', 'error');
+                return;
+            }
+
+            try {
+                const body = { encrypted, algorithm };
+                if (algorithm === 'AES-256') {
+                    body.key = key;
+                    body.iv = iv;
+                } else {
+                    body.privateKey = key;
+                }
+
+                const response = await fetch('/api/encryption/decrypt-text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('decryptResult', result.data);
+                } else {
+                    showMessage('decryptResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('decryptResult', 'Decryption failed: ' + error.message, 'error');
+            }
+        }
+
+        async function encryptFile() {
+            const file = selectedFiles.encrypt;
+            if (!file) {
+                showMessage('encryptFileResult', 'Please select a file', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/api/encryption/encrypt-file', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('encryptFileResult', result.data);
+                } else {
+                    showMessage('encryptFileResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('encryptFileResult', 'File encryption failed: ' + error.message, 'error');
+            }
+        }
+
+        // Compression functions
+        async function compressText() {
+            const text = document.getElementById('compressText').value;
+            const algorithm = document.getElementById('compressAlgorithm').value;
+            
+            if (!text) {
+                showMessage('compressResult', 'Please enter text to compress', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/compression/compress-text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, algorithm })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('compressResult', result.data);
+                } else {
+                    showMessage('compressResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('compressResult', 'Compression failed: ' + error.message, 'error');
+            }
+        }
+
+        async function decompressText() {
+            const compressed = document.getElementById('decompressText').value;
+            const algorithm = document.getElementById('decompressAlgorithm').value;
+            
+            if (!compressed) {
+                showMessage('decompressResult', 'Please enter compressed text', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/compression/decompress-text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ compressed, algorithm })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('decompressResult', result.data);
+                } else {
+                    showMessage('decompressResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('decompressResult', 'Decompression failed: ' + error.message, 'error');
+            }
+        }
+
+        async function compressFile() {
+            const file = selectedFiles.compress;
+            if (!file) {
+                showMessage('compressFileResult', 'Please select a file', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/api/compression/compress-file', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('compressFileResult', result.data);
+                } else {
+                    showMessage('compressFileResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('compressFileResult', 'File compression failed: ' + error.message, 'error');
+            }
+        }
+
+        // Transfer functions
+        async function uploadFile() {
+            const file = selectedFiles.transfer;
+            if (!file) {
+                showMessage('uploadResult', 'Please select a file', 'error');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                document.getElementById('uploadProgress').style.display = 'block';
+                document.getElementById('uploadProgressBar').style.width = '50%';
+
+                const response = await fetch('/api/transfer/upload-fast', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                document.getElementById('uploadProgressBar').style.width = '100%';
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('uploadResult', result.data);
+                } else {
+                    showMessage('uploadResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('uploadResult', 'Upload failed: ' + error.message, 'error');
+            } finally {
+                setTimeout(() => {
+                    document.getElementById('uploadProgress').style.display = 'none';
+                    document.getElementById('uploadProgressBar').style.width = '0%';
+                }, 1000);
+            }
+        }
+
+        async function createTransferSession() {
+            const filename = document.getElementById('chunkFilename').value;
+            const chunkSize = document.getElementById('chunkSize').value;
+            
+            if (!filename) {
+                showMessage('transferSessionResult', 'Please enter filename', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/transfer/create-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        filename, 
+                        fileSize: 1024 * 1024, // 1MB example
+                        chunkSize: parseInt(chunkSize)
+                    })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('transferSessionResult', result.data);
+                } else {
+                    showMessage('transferSessionResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('transferSessionResult', 'Session creation failed: ' + error.message, 'error');
+            }
+        }
+
+        // Auth functions
+        async function registerUser() {
+            const username = document.getElementById('regUsername').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            
+            if (!username || !email || !password) {
+                showMessage('registerResult', 'Please fill all fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    authToken = result.data.token;
+                    localStorage.setItem('authToken', authToken);
+                    document.getElementById('profileBtn').disabled = false;
+                    document.getElementById('logoutBtn').disabled = false;
+                    showMessage('registerResult', 'Registration successful!', 'success');
+                } else {
+                    showMessage('registerResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('registerResult', 'Registration failed: ' + error.message, 'error');
+            }
+        }
+
+        async function loginUser() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) {
+                showMessage('loginResult', 'Please fill all fields', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    authToken = result.data.token;
+                    localStorage.setItem('authToken', authToken);
+                    document.getElementById('profileBtn').disabled = false;
+                    document.getElementById('logoutBtn').disabled = false;
+                    showMessage('loginResult', 'Login successful!', 'success');
+                } else {
+                    showMessage('loginResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('loginResult', 'Login failed: ' + error.message, 'error');
+            }
+        }
+
+        async function getProfile() {
+            if (!authToken) {
+                showMessage('profileResult', 'Please login first', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/profile', {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    showResult('profileResult', result.data);
+                } else {
+                    showMessage('profileResult', result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('profileResult', 'Failed to get profile: ' + error.message, 'error');
+            }
+        }
+
+        async function logoutUser() {
+            try {
+                await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                authToken = null;
+                localStorage.removeItem('authToken');
+                document.getElementById('profileBtn').disabled = true;
+                document.getElementById('logoutBtn').disabled = true;
+                showMessage('profileResult', 'Logout successful!', 'success');
+            } catch (error) {
+                showMessage('profileResult', 'Logout failed: ' + error.message, 'error');
+            }
+        }
+
+        // Initialize auth buttons
+        if (authToken) {
+            document.getElementById('profileBtn').disabled = false;
+            document.getElementById('logoutBtn').disabled = false;
+        }
+    </script>
+</body>
+</html> 
