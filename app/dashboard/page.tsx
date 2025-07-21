@@ -5,39 +5,18 @@ import { UserDashboard } from "@/components/user-dashboard"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { 
-  User, 
-  LogIn, 
-  UserPlus, 
-  Settings, 
-  LogOut, 
-  Crown,
-  ChevronDown,
-  Lock,
   Shield,
-  Share2
+  Share2,
+  Crown,
+  Lock,
+  LogIn,
+  UserPlus
 } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function DashboardPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 模拟登录状态
   const { language } = useLanguage()
-
-  // 模拟用户数据
-  const user = {
-    name: language === 'zh' ? "张先生" : "Mr. Zhang",
-    email: "zhang@example.com",
-    tier: "free",
-    avatar: "/placeholder-user.jpg"
-  }
 
   const handleLogin = () => {
     console.log("Login clicked")
@@ -49,106 +28,8 @@ export default function DashboardPage() {
     setIsLoggedIn(true)
   }
 
-  const handleLogout = () => {
-    console.log("Logout clicked")
-    setIsLoggedIn(false)
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* 顶部导航栏 */}
-      <header className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Shield className="h-5 w-5 text-white" />
-              </div>
-              <h1 className="text-xl font-bold text-gray-900">
-                {language === 'zh' ? '安全文件' : 'SecureFiles'}
-              </h1>
-            </div>
-
-            {/* 用户菜单 */}
-            <div className="flex items-center space-x-4">
-              {isLoggedIn ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center space-x-2 px-3 py-2">
-                      <Avatar className="h-8 w-8">
-                        <AvatarImage src={user.avatar} alt={user.name} />
-                        <AvatarFallback>
-                          {user.name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="hidden md:block text-left">
-                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                        <div className="text-xs text-gray-500">{user.email}</div>
-                      </div>
-                      <ChevronDown className="h-4 w-4 text-gray-500" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-56">
-                    <div className="px-3 py-2">
-                      <div className="flex items-center space-x-2">
-                        <Badge variant={user.tier === 'premium' ? 'default' : 'secondary'} className="text-xs">
-                          {user.tier === 'premium' ? (
-                            <>
-                              <Crown className="h-3 w-3 mr-1" />
-                              {language === 'zh' ? '高级版' : 'Premium'}
-                            </>
-                          ) : (
-                            <>
-                              <Lock className="h-3 w-3 mr-1" />
-                              {language === 'zh' ? '免费版' : 'Free'}
-                            </>
-                          )}
-                        </Badge>
-                      </div>
-                    </div>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                      <User className="h-4 w-4 mr-2" />
-                      {language === 'zh' ? '个人资料' : 'Profile'}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Settings className="h-4 w-4 mr-2" />
-                      {language === 'zh' ? '设置' : 'Settings'}
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
-                      <LogOut className="h-4 w-4 mr-2" />
-                      {language === 'zh' ? '退出登录' : 'Logout'}
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="flex items-center space-x-2">
-                      <User className="h-4 w-4" />
-                      <span>{language === 'zh' ? '用户' : 'User'}</span>
-                      <ChevronDown className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
-                    <DropdownMenuItem onClick={handleLogin}>
-                      <LogIn className="h-4 w-4 mr-2" />
-                      {language === 'zh' ? '登录' : 'Login'}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleSignup}>
-                      <UserPlus className="h-4 w-4 mr-2" />
-                      {language === 'zh' ? '免费注册' : 'Free Register'}
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* 主要内容区域 */}
       <main className="container mx-auto px-6 py-8">
         {isLoggedIn ? (

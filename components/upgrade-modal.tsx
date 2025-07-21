@@ -106,7 +106,7 @@ export default function UpgradeModal({
     },
     {
       name: language === 'zh' ? '专业版' : 'Pro',
-      price: language === 'zh' ? '¥29' : '$9.99',
+      price: language === 'zh' ? '¥75' : '$9.99',
       period: language === 'zh' ? '/月' : '/month',
       features: [
         language === 'zh' ? '2GB文件大小限制' : '2GB file size limit',
@@ -122,7 +122,7 @@ export default function UpgradeModal({
     },
     {
       name: language === 'zh' ? '企业版' : 'Enterprise',
-      price: language === 'zh' ? '¥99' : '$29.99',
+      price: language === 'zh' ? '¥225' : '$29.99',
       period: language === 'zh' ? '/月' : '/month',
       features: [
         language === 'zh' ? '无限制文件大小' : 'Unlimited file size',
@@ -266,7 +266,7 @@ export default function UpgradeModal({
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="text-3xl font-bold">¥29<span className="text-lg text-muted-foreground">/月</span></div>
+                  <div className="text-3xl font-bold">¥75<span className="text-lg text-muted-foreground">/月</span></div>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-green-500" />

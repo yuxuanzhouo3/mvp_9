@@ -4,15 +4,66 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Menu, X, BarChart3, Crown, Globe, Lock, Unlock, Cloud, Zap, Archive, Download } from "lucide-react"
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { 
+  Shield, 
+  Menu, 
+  X, 
+  BarChart3, 
+  Crown, 
+  Globe, 
+  Lock, 
+  Unlock, 
+  Cloud, 
+  Zap, 
+  Archive, 
+  Download,
+  User,
+  LogIn,
+  UserPlus,
+  Settings,
+  LogOut,
+  ChevronDown
+} from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // 模拟登录状态
   const { language, setLanguage, t } = useLanguage()
 
   const toggleLanguage = () => {
     setLanguage(language === 'zh' ? 'en' : 'zh')
+  }
+
+  const handleLogin = () => {
+    console.log("Login clicked")
+    setIsLoggedIn(true)
+  }
+
+  const handleSignup = () => {
+    console.log("Signup clicked")
+    setIsLoggedIn(true)
+  }
+
+  const handleLogout = () => {
+    console.log("Logout clicked")
+    setIsLoggedIn(false)
+  }
+
+  // 模拟用户数据
+  const user = {
+    name: language === 'zh' ? "张先生" : "Mr. Zhang",
+    email: "zhang@example.com",
+    tier: "free",
+    avatar: "/placeholder-user.jpg"
   }
 
   return (
@@ -75,8 +126,80 @@ export function Navigation() {
               <Globe className="h-4 w-4" />
               {language === 'zh' ? 'EN' : '中'}
             </Button>
-            <Button variant="outline">{t('nav.login')}</Button>
-            <Button className="bg-emerald-600 hover:bg-emerald-700">{t('nav.register')}</Button>
+
+            {/* 用户菜单 */}
+            {isLoggedIn ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center space-x-2 px-3 py-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.avatar} alt={user.name} />
+                      <AvatarFallback>
+                        {user.name.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="text-left">
+                      <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                      <div className="text-xs text-gray-500">{user.email}</div>
+                    </div>
+                    <ChevronDown className="h-4 w-4 text-gray-500" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-3 py-2">
+                    <div className="flex items-center space-x-2">
+                      <Badge variant={user.tier === 'premium' ? 'default' : 'secondary'} className="text-xs">
+                        {user.tier === 'premium' ? (
+                          <>
+                            <Crown className="h-3 w-3 mr-1" />
+                            {language === 'zh' ? '高级版' : 'Premium'}
+                          </>
+                        ) : (
+                          <>
+                            <Lock className="h-3 w-3 mr-1" />
+                            {language === 'zh' ? '免费版' : 'Free'}
+                          </>
+                        )}
+                      </Badge>
+                    </div>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <User className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '个人资料' : 'Profile'}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Settings className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '设置' : 'Settings'}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '退出登录' : 'Logout'}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="flex items-center space-x-2">
+                    <User className="h-4 w-4" />
+                    <span>{language === 'zh' ? '用户' : 'User'}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={handleLogin}>
+                    <LogIn className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '登录' : 'Login'}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleSignup}>
+                    <UserPlus className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '免费注册' : 'Free Register'}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -131,10 +254,53 @@ export function Navigation() {
                   <Globe className="h-4 w-4" />
                   {language === 'zh' ? 'EN' : '中'}
                 </Button>
-                <Button variant="outline" className="flex-1 bg-transparent">
-                  {t('nav.login')}
-                </Button>
-                <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">{t('nav.register')}</Button>
+                
+                {/* 移动端用户菜单 */}
+                {isLoggedIn ? (
+                  <div className="flex flex-col gap-2 flex-1">
+                    <div className="flex items-center gap-2 p-2 bg-gray-50 rounded">
+                      <Avatar className="h-6 w-6">
+                        <AvatarImage src={user.avatar} alt={user.name} />
+                        <AvatarFallback className="text-xs">
+                          {user.name.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="text-xs">
+                        <div className="font-medium">{user.name}</div>
+                        <div className="text-gray-500">{user.email}</div>
+                      </div>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={handleLogout}
+                      className="flex-1"
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '退出登录' : 'Logout'}
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-2 flex-1">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={handleLogin}
+                      className="flex-1"
+                    >
+                      <LogIn className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '登录' : 'Login'}
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      onClick={handleSignup}
+                      className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+                    >
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '注册' : 'Register'}
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
