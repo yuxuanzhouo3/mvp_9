@@ -116,7 +116,7 @@ export function Navigation() {
               className="flex items-center gap-2 px-4 py-2 text-sm whitespace-nowrap"
             >
               <Globe className="h-4 w-4" />
-              {language === 'zh' ? 'EN' : '中'}
+              {language === 'zh' ? '中' : 'EN'}
             </Button>
 
             {/* 用户菜单 */}
@@ -261,7 +261,7 @@ export function Navigation() {
                   className="flex items-center gap-2 flex-1 whitespace-nowrap"
                 >
                   <Globe className="h-4 w-4" />
-                  {language === 'zh' ? 'EN' : '中'}
+                  {language === 'zh' ? '中' : 'EN'}
                 </Button>
                 
                 {/* 移动端用户菜单 */}

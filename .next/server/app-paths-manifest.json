@@ -1,7 +1,7 @@
 {
+  "/download/page": "app/download/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/pricing/page": "app/pricing/page.js",
   "/compress/page": "app/compress/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/download/page": "app/download/page.js",
   "/decompress/page": "app/decompress/page.js"
 }
