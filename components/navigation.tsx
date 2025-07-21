@@ -108,17 +108,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-12">
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={toggleLanguage}
-              className="flex items-center gap-2 px-4 py-2 text-sm whitespace-nowrap"
-            >
-              <Globe className="h-4 w-4" />
-              {language === 'zh' ? '中' : 'EN'}
-            </Button>
-
+          <div className="hidden lg:flex items-center gap-10">
             {/* 用户菜单 */}
             {isLoggedIn ? (
               <DropdownMenu>
@@ -217,6 +207,17 @@ export function Navigation() {
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
+
+            {/* 语言切换按钮 - 缩小边框和内边距 */}
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={toggleLanguage}
+              className="flex items-center gap-1 px-2 py-1 text-xs whitespace-nowrap border-gray-300"
+            >
+              <Globe className="h-3 w-3" />
+              {language === 'zh' ? '中' : 'EN'}
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
