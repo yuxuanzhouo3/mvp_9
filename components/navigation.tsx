@@ -108,7 +108,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-8">
             {/* 用户菜单 */}
             {isLoggedIn ? (
               <DropdownMenu>
@@ -167,6 +167,11 @@ export function Navigation() {
                     {language === 'zh' ? '设置' : 'Settings'}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={toggleLanguage}>
+                    <Globe className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '切换到英文' : 'Switch to Chinese'}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="h-4 w-4 mr-2" />
                     {language === 'zh' ? '退出登录' : 'Logout'}
@@ -204,20 +209,14 @@ export function Navigation() {
                       {language === 'zh' ? '升级账户' : 'Upgrade Account'}
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={toggleLanguage}>
+                    <Globe className="h-4 w-4 mr-2" />
+                    {language === 'zh' ? '切换到英文' : 'Switch to Chinese'}
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
-
-            {/* 语言切换按钮 - 缩小边框和内边距 */}
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={toggleLanguage}
-              className="flex items-center gap-1 px-2 py-1 text-xs whitespace-nowrap border-gray-300"
-            >
-              <Globe className="h-3 w-3" />
-              {language === 'zh' ? '中' : 'EN'}
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -254,17 +253,7 @@ export function Navigation() {
                 <Download className="h-5 w-5" />
                 {language === 'zh' ? '下载客户端' : 'Download Client'}
               </Link>
-              <div className="flex gap-3 pt-6 border-t border-gray-200">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={toggleLanguage}
-                  className="flex items-center gap-2 flex-1 whitespace-nowrap"
-                >
-                  <Globe className="h-4 w-4" />
-                  {language === 'zh' ? '中' : 'EN'}
-                </Button>
-                
+              <div className="flex flex-col gap-3 pt-6 border-t border-gray-200">
                 {/* 移动端用户菜单 */}
                 {isLoggedIn ? (
                   <div className="flex flex-col gap-3 flex-1">
@@ -288,6 +277,13 @@ export function Navigation() {
                       <Crown className="h-5 w-5" />
                       {language === 'zh' ? '升级账户' : 'Upgrade Account'}
                     </Link>
+                    <button 
+                      onClick={toggleLanguage}
+                      className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base"
+                    >
+                      <Globe className="h-5 w-5" />
+                      {language === 'zh' ? '切换到英文' : 'Switch to Chinese'}
+                    </button>
                     <Button 
                       variant="outline" 
                       size="sm" 
@@ -325,6 +321,13 @@ export function Navigation() {
                       <Crown className="h-5 w-5" />
                       {language === 'zh' ? '升级账户' : 'Upgrade Account'}
                     </Link>
+                    <button 
+                      onClick={toggleLanguage}
+                      className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base"
+                    >
+                      <Globe className="h-5 w-5" />
+                      {language === 'zh' ? '切换到英文' : 'Switch to Chinese'}
+                    </button>
                   </div>
                 )}
               </div>
