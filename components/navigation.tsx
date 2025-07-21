@@ -121,7 +121,7 @@ export function Navigation() {
               variant="outline" 
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-4 py-2 text-sm"
+              className="flex items-center gap-2 px-4 py-2 text-sm whitespace-nowrap"
             >
               <Globe className="h-4 w-4" />
               {language === 'zh' ? 'EN' : '中'}
@@ -182,7 +182,7 @@ export function Navigation() {
             ) : (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="flex items-center space-x-2 px-4 py-2">
+                  <Button variant="outline" className="flex items-center space-x-2 px-4 py-2 whitespace-nowrap">
                     <User className="h-4 w-4" />
                     <span className="text-sm font-medium">{language === 'zh' ? '用户' : 'User'}</span>
                     <ChevronDown className="h-4 w-4" />
@@ -249,7 +249,7 @@ export function Navigation() {
                   variant="outline" 
                   size="sm"
                   onClick={toggleLanguage}
-                  className="flex items-center gap-2 flex-1"
+                  className="flex items-center gap-2 flex-1 whitespace-nowrap"
                 >
                   <Globe className="h-4 w-4" />
                   {language === 'zh' ? 'EN' : '中'}
@@ -274,7 +274,7 @@ export function Navigation() {
                       variant="outline" 
                       size="sm" 
                       onClick={handleLogout}
-                      className="flex-1"
+                      className="flex-1 whitespace-nowrap"
                     >
                       <LogOut className="h-4 w-4 mr-2" />
                       {language === 'zh' ? '退出登录' : 'Logout'}
@@ -286,7 +286,7 @@ export function Navigation() {
                       variant="outline" 
                       size="sm" 
                       onClick={handleLogin}
-                      className="flex-1"
+                      className="flex-1 whitespace-nowrap"
                     >
                       <LogIn className="h-4 w-4 mr-2" />
                       {language === 'zh' ? '登录' : 'Login'}
@@ -294,7 +294,7 @@ export function Navigation() {
                     <Button 
                       size="sm" 
                       onClick={handleSignup}
-                      className="flex-1 bg-emerald-600 hover:bg-emerald-700"
+                      className="flex-1 bg-emerald-600 hover:bg-emerald-700 whitespace-nowrap"
                     >
                       <UserPlus className="h-4 w-4 mr-2" />
                       {language === 'zh' ? '注册' : 'Register'}
