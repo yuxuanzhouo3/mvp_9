@@ -108,7 +108,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-8">
             <Button 
               variant="outline" 
               size="sm"
