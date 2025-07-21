@@ -69,59 +69,59 @@ export function Navigation() {
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Shield className="h-8 w-8 text-emerald-600" />
-            <span className="text-xl font-bold text-gray-900">SecureFiles</span>
-            <Badge variant="outline" className="text-xs">
+          <Link href="/" className="flex items-center gap-3">
+            <Shield className="h-9 w-9 text-emerald-600" />
+            <span className="text-2xl font-bold text-gray-900">SecureFiles</span>
+            <Badge variant="outline" className="text-xs px-2 py-1">
               {t('nav.version')}
             </Badge>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="/encrypt" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+          <div className="hidden lg:flex items-center gap-8">
+            <Link href="/encrypt" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Lock className="h-4 w-4" />
               {language === 'zh' ? '加密' : 'Encrypt'}
             </Link>
-            <Link href="/decrypt" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/decrypt" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Unlock className="h-4 w-4" />
               {language === 'zh' ? '解密' : 'Decrypt'}
             </Link>
-            <Link href="/cloud" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/cloud" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Cloud className="h-4 w-4" />
               {language === 'zh' ? '云端' : 'Cloud'}
             </Link>
-            <Link href="/compress" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/compress" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Zap className="h-4 w-4" />
               {language === 'zh' ? '压缩' : 'Compress'}
             </Link>
-            <Link href="/decompress" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/decompress" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Archive className="h-4 w-4" />
               {language === 'zh' ? '解压缩' : 'Decompress'}
             </Link>
-            <Link href="/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <BarChart3 className="h-4 w-4" />
               {t('nav.dashboard')}
             </Link>
-            <Link href="/pricing" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/pricing" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Crown className="h-4 w-4" />
               {t('nav.pricing')}
             </Link>
-            <Link href="/download" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+            <Link href="/download" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium whitespace-nowrap">
               <Download className="h-4 w-4" />
-              {language === 'zh' ? '下载客户端' : 'Download Client'}
+              {language === 'zh' ? '下载客户端' : 'Download'}
             </Link>
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4">
             <Button 
               variant="outline" 
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 px-3 py-2 text-sm"
             >
               <Globe className="h-4 w-4" />
               {language === 'zh' ? 'EN' : '中'}
@@ -131,7 +131,7 @@ export function Navigation() {
             {isLoggedIn ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center space-x-2 px-3 py-2">
+                  <Button variant="ghost" className="flex items-center space-x-3 px-4 py-2">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={user.avatar} alt={user.name} />
                       <AvatarFallback>
@@ -182,9 +182,9 @@ export function Navigation() {
             ) : (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="flex items-center space-x-2">
+                  <Button variant="outline" className="flex items-center space-x-2 px-4 py-2">
                     <User className="h-4 w-4" />
-                    <span>{language === 'zh' ? '用户' : 'User'}</span>
+                    <span className="text-sm font-medium">{language === 'zh' ? '用户' : 'User'}</span>
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -203,48 +203,48 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="lg:hidden py-6 border-t border-gray-200">
             <div className="flex flex-col gap-4">
-              <Link href="/encrypt" className="flex items-center gap-2 text-gray-700">
-                <Lock className="h-4 w-4" />
+              <Link href="/encrypt" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Lock className="h-5 w-5" />
                 {language === 'zh' ? '加密' : 'Encrypt'}
               </Link>
-              <Link href="/decrypt" className="flex items-center gap-2 text-gray-700">
-                <Unlock className="h-4 w-4" />
+              <Link href="/decrypt" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Unlock className="h-5 w-5" />
                 {language === 'zh' ? '解密' : 'Decrypt'}
               </Link>
-              <Link href="/cloud" className="flex items-center gap-2 text-gray-700">
-                <Cloud className="h-4 w-4" />
+              <Link href="/cloud" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Cloud className="h-5 w-5" />
                 {language === 'zh' ? '云端' : 'Cloud'}
               </Link>
-              <Link href="/compress" className="flex items-center gap-2 text-gray-700">
-                <Zap className="h-4 w-4" />
+              <Link href="/compress" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Zap className="h-5 w-5" />
                 {language === 'zh' ? '压缩' : 'Compress'}
               </Link>
-              <Link href="/decompress" className="flex items-center gap-2 text-gray-700">
-                <Archive className="h-4 w-4" />
+              <Link href="/decompress" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Archive className="h-5 w-5" />
                 {language === 'zh' ? '解压缩' : 'Decompress'}
               </Link>
-              <Link href="/dashboard" className="flex items-center gap-2 text-gray-700">
-                <BarChart3 className="h-4 w-4" />
+              <Link href="/dashboard" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <BarChart3 className="h-5 w-5" />
                 {t('nav.dashboard')}
               </Link>
-              <Link href="/pricing" className="flex items-center gap-2 text-gray-700">
-                <Crown className="h-4 w-4" />
+              <Link href="/pricing" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Crown className="h-5 w-5" />
                 {t('nav.pricing')}
               </Link>
-              <Link href="/download" className="flex items-center gap-2 text-gray-700">
-                <Download className="h-4 w-4" />
+              <Link href="/download" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                <Download className="h-5 w-5" />
                 {language === 'zh' ? '下载客户端' : 'Download Client'}
               </Link>
-              <div className="flex gap-3 pt-4 border-t border-gray-200">
+              <div className="flex gap-3 pt-6 border-t border-gray-200">
                 <Button 
                   variant="outline" 
                   size="sm"
@@ -257,15 +257,15 @@ export function Navigation() {
                 
                 {/* 移动端用户菜单 */}
                 {isLoggedIn ? (
-                  <div className="flex flex-col gap-2 flex-1">
-                    <div className="flex items-center gap-2 p-2 bg-gray-50 rounded">
-                      <Avatar className="h-6 w-6">
+                  <div className="flex flex-col gap-3 flex-1">
+                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                      <Avatar className="h-8 w-8">
                         <AvatarImage src={user.avatar} alt={user.name} />
-                        <AvatarFallback className="text-xs">
+                        <AvatarFallback className="text-sm">
                           {user.name.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
-                      <div className="text-xs">
+                      <div className="text-sm">
                         <div className="font-medium">{user.name}</div>
                         <div className="text-gray-500">{user.email}</div>
                       </div>
@@ -281,7 +281,7 @@ export function Navigation() {
                     </Button>
                   </div>
                 ) : (
-                  <div className="flex flex-col gap-2 flex-1">
+                  <div className="flex flex-col gap-3 flex-1">
                     <Button 
                       variant="outline" 
                       size="sm" 

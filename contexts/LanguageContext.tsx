@@ -291,11 +291,7 @@ const translations = {
     'upgrade.enterprise.features': ['文件大小 ≤10GB', '永久存储', 'XChaCha20加密', '追踪墙+时间锁', 'API接入', '优先客服支持'],
     'upgrade.popular': '最受欢迎',
     'upgrade.cta': '立即升级',
-    'upgrade.promo.title': '限时优惠',
-    'upgrade.promo.description': '首年高级版特价',
-    'upgrade.promo.original': '$180',
-    'upgrade.promo.discount': '$99',
-    'upgrade.promo.limited': '优惠仅限前1000名用户，立即行动！',
+
     
     // Pricing Table
     'pricing.table.selfDestruct': '自毁链接',
@@ -628,11 +624,8 @@ const translations = {
     'upgrade.enterprise.features': ['File size ≤10GB', 'Permanent storage', 'XChaCha20 encryption', 'Tracking wall + time lock', 'API access', 'Priority support'],
     'upgrade.popular': 'Most Popular',
     'upgrade.cta': 'Upgrade Now',
-    'upgrade.promo.title': 'Limited Time Offer',
-    'upgrade.promo.description': 'First year enterprise plan only',
-    'upgrade.promo.original': '$180',
-    'upgrade.promo.discount': '$99',
-    'upgrade.promo.limited': 'Limited time offer, act now!',
+
+
     
     // Pricing Table
     'pricing.table.selfDestruct': 'Self-destruct links',

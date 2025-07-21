@@ -348,24 +348,7 @@ export function PricingSection() {
           </CardContent>
         </Card>
 
-        {/* 限时优惠 */}
-        <Card className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200">
-          <CardContent className="text-center py-8">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Zap className="h-6 w-6 text-yellow-600" />
-              <h3 className="text-2xl font-bold text-yellow-800">{t('upgrade.promo.title')}</h3>
-            </div>
-            <p className="text-yellow-700 mb-4">
-              {t('upgrade.promo.description')}：<span className="line-through text-gray-500">{t('upgrade.promo.original')}</span>
-              <span className="text-3xl font-bold text-yellow-800 ml-2">{t('upgrade.promo.discount')}</span>
-            </p>
-            <p className="text-sm text-yellow-600 mb-6">{t('upgrade.promo.limited')}</p>
-            <Button size="lg" className="bg-yellow-600 hover:bg-yellow-700">
-              <Crown className="mr-2 h-5 w-5" />
-              {t('upgrade.cta')}
-            </Button>
-          </CardContent>
-        </Card>
+
 
         {/* FAQ Section */}
         <div className="mt-16">
