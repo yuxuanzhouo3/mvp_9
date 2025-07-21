@@ -101,14 +101,6 @@ export function Navigation() {
               <Archive className="h-4 w-4" />
               {language === 'zh' ? '解压缩' : 'Decompress'}
             </Link>
-            <Link href="/dashboard" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
-              <BarChart3 className="h-4 w-4" />
-              {t('nav.dashboard')}
-            </Link>
-            <Link href="/pricing" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
-              <Crown className="h-4 w-4" />
-              {t('nav.pricing')}
-            </Link>
             <Link href="/download" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium whitespace-nowrap">
               <Download className="h-4 w-4" />
               {language === 'zh' ? '下载客户端' : 'Download'}
@@ -164,6 +156,18 @@ export function Navigation() {
                     </div>
                   </div>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard" className="flex items-center">
+                      <BarChart3 className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '我的面板' : 'Dashboard'}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/pricing" className="flex items-center">
+                      <Crown className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '升级账户' : 'Upgrade Account'}
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem>
                     <User className="h-4 w-4 mr-2" />
                     {language === 'zh' ? '个人资料' : 'Profile'}
@@ -196,6 +200,19 @@ export function Navigation() {
                   <DropdownMenuItem onClick={handleSignup}>
                     <UserPlus className="h-4 w-4 mr-2" />
                     {language === 'zh' ? '免费注册' : 'Free Register'}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard" className="flex items-center">
+                      <BarChart3 className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '我的面板' : 'Dashboard'}
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/pricing" className="flex items-center">
+                      <Crown className="h-4 w-4 mr-2" />
+                      {language === 'zh' ? '升级账户' : 'Upgrade Account'}
+                    </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -232,14 +249,6 @@ export function Navigation() {
                 <Archive className="h-5 w-5" />
                 {language === 'zh' ? '解压缩' : 'Decompress'}
               </Link>
-              <Link href="/dashboard" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
-                <BarChart3 className="h-5 w-5" />
-                {t('nav.dashboard')}
-              </Link>
-              <Link href="/pricing" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
-                <Crown className="h-5 w-5" />
-                {t('nav.pricing')}
-              </Link>
               <Link href="/download" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
                 <Download className="h-5 w-5" />
                 {language === 'zh' ? '下载客户端' : 'Download Client'}
@@ -270,6 +279,14 @@ export function Navigation() {
                         <div className="text-gray-500">{user.email}</div>
                       </div>
                     </div>
+                    <Link href="/dashboard" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                      <BarChart3 className="h-5 w-5" />
+                      {language === 'zh' ? '我的面板' : 'Dashboard'}
+                    </Link>
+                    <Link href="/pricing" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                      <Crown className="h-5 w-5" />
+                      {language === 'zh' ? '升级账户' : 'Upgrade Account'}
+                    </Link>
                     <Button 
                       variant="outline" 
                       size="sm" 
@@ -299,6 +316,14 @@ export function Navigation() {
                       <UserPlus className="h-4 w-4 mr-2" />
                       {language === 'zh' ? '注册' : 'Register'}
                     </Button>
+                    <Link href="/dashboard" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                      <BarChart3 className="h-5 w-5" />
+                      {language === 'zh' ? '我的面板' : 'Dashboard'}
+                    </Link>
+                    <Link href="/pricing" className="flex items-center gap-3 text-gray-700 hover:text-emerald-600 transition-colors text-base">
+                      <Crown className="h-5 w-5" />
+                      {language === 'zh' ? '升级账户' : 'Upgrade Account'}
+                    </Link>
                   </div>
                 )}
               </div>
