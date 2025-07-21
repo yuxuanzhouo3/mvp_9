@@ -37,7 +37,7 @@ import { useLanguage } from "@/contexts/LanguageContext"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false) // 模拟登录状态
-  const { language, setLanguage, t } = useLanguage()
+  const { language, setLanguage, t, isDetecting } = useLanguage()
 
   const toggleLanguage = () => {
     setLanguage(language === 'zh' ? 'en' : 'zh')
@@ -64,6 +64,31 @@ export function Navigation() {
     email: "zhang@example.com",
     tier: "free",
     avatar: "/placeholder-user.jpg"
+  }
+
+  // Show loading state while detecting language
+  if (isDetecting) {
+    return (
+      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <Shield className="h-9 w-9 text-emerald-600" />
+              <span className="text-2xl font-bold text-gray-900">SecureFiles</span>
+              <Badge variant="outline" className="text-xs px-2 py-1 ml-2">
+                v0
+              </Badge>
+            </div>
+            
+            {/* Loading indicator */}
+            <div className="flex items-center gap-4">
+              <div className="animate-pulse bg-gray-200 h-8 w-32 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    )
   }
 
   return (

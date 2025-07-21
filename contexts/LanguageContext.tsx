@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 
 type Language = 'zh' | 'en'
 
@@ -8,6 +8,7 @@ interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
   t: (key: string) => string | string[]
+  isDetecting: boolean
 }
 
 const translations = {
@@ -684,13 +685,34 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>('zh')
+  const [isDetecting, setIsDetecting] = useState(true)
+
+  // Detect user's country and set initial language
+  useEffect(() => {
+    const detectUserLanguage = async () => {
+      try {
+        const response = await fetch('/api/detect-country')
+        if (response.ok) {
+          const data = await response.json()
+          setLanguage(data.recommendedLanguage)
+        }
+      } catch (error) {
+        console.error('Failed to detect user location:', error)
+        // Keep default language (zh) if detection fails
+      } finally {
+        setIsDetecting(false)
+      }
+    }
+
+    detectUserLanguage()
+  }, [])
 
   const t = (key: string): string | string[] => {
     return translations[language][key as keyof typeof translations[typeof language]] || key
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, isDetecting }}>
       {children}
     </LanguageContext.Provider>
   )
