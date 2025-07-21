@@ -1,6 +1,6 @@
 {
-  "/download/page": "app/download/page.js",
-  "/encrypt/page": "app/encrypt/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/pricing/page": "app/pricing/page.js"
+  "/pricing/page": "app/pricing/page.js",
+  "/encrypt/page": "app/encrypt/page.js",
+  "/download/page": "app/download/page.js"
 }

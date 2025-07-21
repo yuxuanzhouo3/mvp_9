@@ -155,6 +155,122 @@ export function PricingSection() {
           ))}
         </div>
 
+        {/* 客户端应用定价 */}
+        <Card className="mb-12 border-2 border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-2 text-2xl text-blue-800">
+              <Zap className="h-6 w-6" />
+              {t('pricing.client.title')}
+            </CardTitle>
+            <p className="text-blue-700">{t('pricing.client.subtitle')}</p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* 免费版 */}
+              <Card className="border-gray-200">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-xl">{t('pricing.client.free.title')}</CardTitle>
+                  <div className="text-3xl font-bold text-gray-900">
+                    {t('pricing.client.free.price')}
+                    <span className="text-sm font-normal text-gray-600">{t('pricing.client.free.period')}</span>
+                  </div>
+                  <p className="text-gray-600">{t('pricing.client.free.storage')}</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.free.files')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.free.sharing')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.free.support')}</span>
+                    </li>
+                  </ul>
+                  <Button variant="outline" className="w-full">
+                    {t('pricing.client.cta.free')}
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* 专业版 */}
+              <Card className="border-blue-200 bg-blue-50">
+                <CardHeader className="text-center">
+                  <Badge className="w-fit mx-auto mb-2 bg-blue-600">推荐</Badge>
+                  <CardTitle className="text-xl">{t('pricing.client.pro.title')}</CardTitle>
+                  <div className="text-3xl font-bold text-gray-900">
+                    {t('pricing.client.pro.price')}
+                    <span className="text-sm font-normal text-gray-600">{t('pricing.client.pro.period')}</span>
+                  </div>
+                  <p className="text-gray-600">{t('pricing.client.pro.storage')}</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.pro.files')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.pro.sharing')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.pro.analytics')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.pro.support')}</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                    {t('pricing.client.cta.pro')}
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* 企业版 */}
+              <Card className="border-purple-200 bg-purple-50">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-xl">{t('pricing.client.enterprise.title')}</CardTitle>
+                  <div className="text-3xl font-bold text-gray-900">
+                    {t('pricing.client.enterprise.price')}
+                    <span className="text-sm font-normal text-gray-600">{t('pricing.client.enterprise.period')}</span>
+                  </div>
+                  <p className="text-gray-600">{t('pricing.client.enterprise.storage')}</p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.enterprise.files')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.enterprise.sharing')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.enterprise.analytics')}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-sm">{t('pricing.client.enterprise.support')}</span>
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                    {t('pricing.client.cta.enterprise')}
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* 功能对比表 */}
         <Card>
           <CardHeader>
@@ -175,14 +291,20 @@ export function PricingSection() {
                   <tr>
                     <td className="py-3 px-4 font-medium">{t('upload.maxSize')}</td>
                     <td className="text-center py-3 px-4">≤50MB</td>
-                    <td className="text-center py-3 px-4">≤1GB</td>
-                    <td className="text-center py-3 px-4">≤10GB</td>
+                    <td className="text-center py-3 px-4">≤2GB</td>
+                    <td className="text-center py-3 px-4">{t('pricing.table.unlimited')}</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium">{t('dashboard.stats.storage')}</td>
-                    <td className="text-center py-3 px-4">{t('pricing.table.7days')}</td>
-                    <td className="text-center py-3 px-4">{t('pricing.table.1year')}</td>
-                    <td className="text-center py-3 px-4">{t('pricing.table.permanent')}</td>
+                    <td className="py-3 px-4 font-medium">客户端应用</td>
+                    <td className="text-center py-3 px-4">❌</td>
+                    <td className="text-center py-3 px-4">✅</td>
+                    <td className="text-center py-3 px-4">✅</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium">批量处理</td>
+                    <td className="text-center py-3 px-4">❌</td>
+                    <td className="text-center py-3 px-4">✅</td>
+                    <td className="text-center py-3 px-4">✅</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-medium">{t('feature.security.title')}</td>

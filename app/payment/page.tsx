@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -29,7 +29,7 @@ interface PlanDetails {
   features: string[]
 }
 
-export default function PaymentPage() {
+function PaymentContent() {
   const { language } = useLanguage()
   const searchParams = useSearchParams()
   const planId = searchParams.get('plan') || 'pro'
@@ -406,5 +406,20 @@ export default function PaymentPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p>Loading payment page...</p>
+        </div>
+      </div>
+    }>
+      <PaymentContent />
+    </Suspense>
   )
 } 
