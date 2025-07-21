@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Menu, X, BarChart3, Crown, Globe, Lock, Unlock, Cloud, Zap, Archive } from "lucide-react"
+import { Shield, Menu, X, BarChart3, Crown, Globe, Lock, Unlock, Cloud, Zap, Archive, Download } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export function Navigation() {
@@ -57,6 +57,10 @@ export function Navigation() {
             <Link href="/pricing" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
               <Crown className="h-4 w-4" />
               {t('nav.pricing')}
+            </Link>
+            <Link href="/download" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600">
+              <Download className="h-4 w-4" />
+              {language === 'zh' ? '下载客户端' : 'Download Client'}
             </Link>
           </div>
 
@@ -112,6 +116,10 @@ export function Navigation() {
               <Link href="/pricing" className="flex items-center gap-2 text-gray-700">
                 <Crown className="h-4 w-4" />
                 {t('nav.pricing')}
+              </Link>
+              <Link href="/download" className="flex items-center gap-2 text-gray-700">
+                <Download className="h-4 w-4" />
+                {language === 'zh' ? '下载客户端' : 'Download Client'}
               </Link>
               <div className="flex gap-3 pt-4 border-t border-gray-200">
                 <Button 
