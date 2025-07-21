@@ -8,7 +8,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SecureFiles - 病毒式文件加密分享平台",
+  title: "SecureFiles - 文件加密分享平台",
   description: "安全分享文件，邀请好友获得奖励，打造最安全的文件分享网络",
   generator: 'v0.dev'
 }
