@@ -231,7 +231,7 @@ export default function UpgradeModal({
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="text-3xl font-bold">¥0</div>
+                  <div className="text-3xl font-bold">{language === 'zh' ? '¥0' : '$0'}</div>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-green-500" />
@@ -266,7 +266,7 @@ export default function UpgradeModal({
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="text-3xl font-bold">¥75<span className="text-lg text-muted-foreground">/月</span></div>
+                  <div className="text-3xl font-bold">{language === 'zh' ? '¥75' : '$9.99'}<span className="text-lg text-muted-foreground">{language === 'zh' ? '/月' : '/month'}</span></div>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-green-500" />

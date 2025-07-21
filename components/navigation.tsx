@@ -74,13 +74,13 @@ export function Navigation() {
           <Link href="/" className="flex items-center gap-3">
             <Shield className="h-9 w-9 text-emerald-600" />
             <span className="text-2xl font-bold text-gray-900">SecureFiles</span>
-            <Badge variant="outline" className="text-xs px-2 py-1">
+            <Badge variant="outline" className="text-xs px-2 py-1 ml-2">
               {t('nav.version')}
             </Badge>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-10 ml-8">
             <Link href="/encrypt" className="flex items-center gap-2 text-gray-700 hover:text-emerald-600 transition-colors text-sm font-medium">
               <Lock className="h-4 w-4" />
               {language === 'zh' ? '加密' : 'Encrypt'}
@@ -116,12 +116,12 @@ export function Navigation() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-6">
             <Button 
               variant="outline" 
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-2 text-sm"
+              className="flex items-center gap-2 px-4 py-2 text-sm"
             >
               <Globe className="h-4 w-4" />
               {language === 'zh' ? 'EN' : '中'}
