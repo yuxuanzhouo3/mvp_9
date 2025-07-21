@@ -23,13 +23,12 @@ import {
   ChevronDown,
   Lock,
   Shield,
-  Share2,
-  ToggleLeft
+  Share2
 } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function DashboardPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false) // 改为可切换状态用于测试
+  const [isLoggedIn, setIsLoggedIn] = useState(false) // 模拟登录状态
   const { language } = useLanguage()
 
   // 模拟用户数据
@@ -41,21 +40,18 @@ export default function DashboardPage() {
   }
 
   const handleLogin = () => {
-    // 处理登录逻辑
     console.log("Login clicked")
-    setIsLoggedIn(true) // 临时切换登录状态
+    setIsLoggedIn(true)
   }
 
   const handleSignup = () => {
-    // 处理注册逻辑
     console.log("Signup clicked")
-    setIsLoggedIn(true) // 临时切换登录状态
+    setIsLoggedIn(true)
   }
 
   const handleLogout = () => {
-    // 处理登出逻辑
     console.log("Logout clicked")
-    setIsLoggedIn(false) // 临时切换登录状态
+    setIsLoggedIn(false)
   }
 
   return (
@@ -76,17 +72,6 @@ export default function DashboardPage() {
 
             {/* 用户菜单 */}
             <div className="flex items-center space-x-4">
-              {/* 临时测试按钮 - 生产环境请删除 */}
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setIsLoggedIn(!isLoggedIn)}
-                className="text-xs"
-              >
-                <ToggleLeft className="h-3 w-3 mr-1" />
-                {isLoggedIn ? (language === 'zh' ? '切换未登录' : 'Switch to Logged Out') : (language === 'zh' ? '切换已登录' : 'Switch to Logged In')}
-              </Button>
-
               {isLoggedIn ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
